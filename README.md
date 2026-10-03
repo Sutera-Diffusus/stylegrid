@@ -246,6 +246,10 @@ python mixposter.py --src p.jpg --out out/ --poster V --style riso_pixel --title
 
 不喜欢命令行？仓库自带一个本地 Web 界面（苹果式单页：拖图 → 选风格卡 → 生成）:
 
+| 浅色 · 引导首页 | 深色 · 结果画廊 |
+|---|---|
+| <img src="samples/preview_ui_light.jpg"> | <img src="samples/preview_ui_dark.jpg"> |
+
 ```bash
 python app/server.py              # 默认 http://127.0.0.1:8765/
 python app/server.py --port 8791  # 端口被占用时换一个

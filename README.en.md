@@ -154,6 +154,10 @@ Everything runs locally. No network calls, no uploads, no telemetry — your pho
 
 Prefer a GUI? The repo ships a local single-page studio (drag a photo in → pick a style card → generate):
 
+| Light · guided home | Dark · result gallery |
+|---|---|
+| <img src="samples/preview_ui_light.jpg"> | <img src="samples/preview_ui_dark.jpg"> |
+
 ```bash
 python app/server.py              # http://127.0.0.1:8765/
 python app/server.py --port 8791  # pick another port if busy
