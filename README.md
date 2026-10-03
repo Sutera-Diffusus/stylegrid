@@ -250,6 +250,8 @@ python mixposter.py --src p.jpg --out out/ --poster V --style riso_pixel --title
 |---|---|
 | <img src="samples/preview_ui_light.jpg"> | <img src="samples/preview_ui_dark.jpg"> |
 
+**图文教程：[网页版手把手教程 →](docs/网页版教程.md)**
+
 ```bash
 python app/server.py              # 默认 http://127.0.0.1:8765/
 python app/server.py --port 8791  # 端口被占用时换一个

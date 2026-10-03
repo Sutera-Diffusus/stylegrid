@@ -158,6 +158,8 @@ Prefer a GUI? The repo ships a local single-page studio (drag a photo in → pic
 |---|---|
 | <img src="samples/preview_ui_light.jpg"> | <img src="samples/preview_ui_dark.jpg"> |
 
+**Step-by-step guide (Chinese): [网页版教程 →](docs/网页版教程.md)**
+
 ```bash
 python app/server.py              # http://127.0.0.1:8765/
 python app/server.py --port 8791  # pick another port if busy
