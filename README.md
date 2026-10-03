@@ -1,12 +1,12 @@
 <div align="center">
 
-<img src="samples/hero.jpg" alt="stylegrid 示例：一张盐湖骑行照 → 九宫格" width="760">
+<img src="docs/tutorial/00-cover-dark.webp" alt="stylegrid 本地 Web 工作室" width="820">
 
 # stylegrid · 风格网格
 
 **一张照片进，一套作品出。**
 
-**51 种艺术风格九宫格 · 16 个混血配方 · 竖/方/横三段海报 · 全程纯图片 · 自动质检。**
+**网页端开箱即用：拖入照片 → 点风格卡 → 一键出整套。**<br>**51 种艺术风格九宫格 · 16 个混血配方 · 竖/方/横三段海报 · 全程本地运行 · 自动质检。**
 
 <img alt="license" src="https://img.shields.io/badge/license-MIT-blue">
 <img alt="python" src="https://img.shields.io/badge/python-3.10%2B-3776ab">
@@ -15,7 +15,7 @@
 <img alt="e2e" src="https://img.shields.io/badge/闭环测试-4%2F4%20PASS-brightgreen">
 <img alt="regression" src="https://img.shields.io/badge/风格回归-10%2F10%20PASS-brightgreen">
 
-[**一分钟上手**](#一分钟上手) · [**看看它长什么样**](#看看它长什么样) · [**它有什么**](#它有什么) · [**闭环与质检**](#闭环与质检) · [**常见问题**](#常见问题) · [English](README.en.md)
+[**网页版上手**](#网页版上手) · [**看看它长什么样**](#看看它长什么样) · [**它有什么**](#它有什么) · [**闭环与质检**](#闭环与质检) · [**命令行**](#命令行用法进阶) · [English](README.en.md)
 
 </div>
 
@@ -37,12 +37,12 @@
 
 ## 目录
 
-- [一分钟上手](#一分钟上手)
+- [网页版上手](#网页版上手)
 - [看看它长什么样](#看看它长什么样)
 - [它有什么](#它有什么)
 - [闭环与质检](#闭环与质检)
 - [预设](#预设)
-- [命令速查](#命令速查)
+- [命令行用法(进阶)](#命令行用法进阶)
 - [常见问题](#常见问题)
 - [数据与隐私](#数据与隐私)
 - [项目结构](#项目结构)
@@ -53,34 +53,24 @@
 
 ---
 
-## 一分钟上手
+## 网页版上手
 
 ```bash
 git clone https://github.com/Sutera-Diffusus/stylegrid
 cd stylegrid
 pip install -r requirements.txt
-
-python workflow.py --src 你的照片.jpg --out out/auto      # 全自动，先跑这个
+python app/server.py        # 打开 http://127.0.0.1:8765/
 ```
 
-打开 `out/auto/`：
+把照片**拖进窗口任意位置**，点一张风格卡，再点「生成整套作品」——九宫格、混血构图、V / S / H 三段海报一次出齐，右上角整包下载。什么都不用调，预设已经配好。
 
-```
-01_九宫格.png      八格 + 原图对照
-02_混血格.png      风格混血 3×3
-03_海报_V.png      纯图片海报（默认零文字）
-报告.md            画面分析 + 逐件痕迹分 + 文件清单
-```
+| 浅色 · 引导首页 | 深色 · 结果画廊 |
+|---|---|
+| <img src="samples/preview_ui_light.jpg"> | <img src="samples/preview_ui_dark.jpg"> |
 
-想要别的手感，三种粒度随你：
+**图文教程：[网页版手把手教程(9 张实拍步骤图) →](docs/网页版教程.md)**
 
-```bash
-python workflow.py --src 照片.jpg --out out/x --profile 印刷          # 用预设
-python workflow.py --src 照片.jpg --out out/x \
-    --styles pixel_E,glitch_E,cross_E --mixes riso_pixel,ink_point \
-    --posters V,S,H --aspect 1:1                                     # 全自定义
-python workflow.py --list                                            # 列 51 风格 / 16 配方 / 6 预设
-```
+不喜欢浏览器？命令行照样能用，见 [命令行用法](#命令行用法进阶)。
 
 ---
 
@@ -180,7 +170,30 @@ python selftest.py               # 风格库回归（10 类内容自动判定）
 
 ---
 
-## 命令速查
+## 命令行用法(进阶)
+
+```bash
+python workflow.py --src 你的照片.jpg --out out/auto      # 全自动,先跑这个
+```
+
+打开 `out/auto/`：
+
+```
+01_九宫格.png      八格 + 原图对照
+02_混血格.png      风格混血 3×3
+03_海报_V.png      纯图片海报(默认零文字)
+报告.md            画面分析 + 逐件痕迹分 + 文件清单
+```
+
+想要别的手感，三种粒度随你：
+
+```bash
+python workflow.py --src 照片.jpg --out out/x --profile 印刷          # 用预设
+python workflow.py --src 照片.jpg --out out/x \
+    --styles pixel_E,glitch_E,cross_E --mixes riso_pixel,ink_point \
+    --posters V,S,H --aspect 1:1                                     # 全自定义
+python workflow.py --list                                            # 列 51 风格 / 16 配方 / 6 预设
+```
 
 ```bash
 # 一站式
@@ -242,27 +255,9 @@ python mixposter.py --src p.jpg --out out/ --poster V --style riso_pixel --title
 
 ---
 
-## 本地 Web 工作室
+## 宣传短片
 
-不喜欢命令行？仓库自带一个本地 Web 界面（苹果式单页：拖图 → 选风格卡 → 生成）:
-
-| 浅色 · 引导首页 | 深色 · 结果画廊 |
-|---|---|
-| <img src="samples/preview_ui_light.jpg"> | <img src="samples/preview_ui_dark.jpg"> |
-
-**图文教程：[网页版手把手教程 →](docs/网页版教程.md)**
-
-```bash
-python app/server.py              # 默认 http://127.0.0.1:8765/
-python app/server.py --port 8791  # 端口被占用时换一个
-```
-
-- **风格预设是缩略图卡**,「自定义」展开 51 种风格多选池，直接改生成内容
-- 「更多选项」里调色彩混合 / 视觉密度 / V·S·H 画幅 / 题签
-- 最近作品自动读取 `out/web/` 历史产物，可拖拽横滑、点击回看、整包下载
-- 与 CLI 同一引擎：`POST /api/generate` 走的就是 `workflow.run(...)`，产物落盘 `out/web/`
-
-**宣传短片**:15 秒产品短片（PIL 逐帧渲染，无外部素材）:
+15 秒产品短片，PIL 逐帧渲染，无外部素材：
 
 ```bash
 python promo/make_promo.py        # 输出 promo/out/stylegrid_promo.mp4 + 分镜图 + JSON

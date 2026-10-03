@@ -1,12 +1,12 @@
 <div align="center">
 
-<img src="samples/hero.jpg" alt="stylegrid sample: one salt-flat cycling photo → nine styled grids" width="760">
+<img src="docs/tutorial/00-cover-dark.webp" alt="stylegrid local web studio" width="820">
 
 # stylegrid
 
 **One photo in, a full set out.**
 
-**51 art styles · 16 hybrid recipes · V/S/H poster layouts · images only · automatic quality gate.**
+**Web studio out of the box: drag a photo in → pick a style card → generate the whole set.**<br>**51 art styles · 16 hybrid recipes · V/S/H poster layouts · fully local · automatic quality gate.**
 
 <img alt="license" src="https://img.shields.io/badge/license-MIT-blue">
 <img alt="python" src="https://img.shields.io/badge/python-3.10%2B-3776ab">
@@ -15,7 +15,7 @@
 <img alt="e2e" src="https://img.shields.io/badge/e2e-4%2F4%20PASS-brightgreen">
 <img alt="regression" src="https://img.shields.io/badge/regression-10%2F10%20PASS-brightgreen">
 
-[Quickstart](#quickstart) · [Gallery](#gallery) · [What's inside](#whats-inside) · [Quality gate](#quality-gate) · [中文](README.md)
+[Web studio](#web-studio) · [Gallery](#gallery) · [What's inside](#whats-inside) · [Quality gate](#quality-gate) · [中文](README.md)
 
 </div>
 
@@ -33,13 +33,30 @@ It actually looks at your photo: luminance, saturation, subject shape and whethe
 
 ---
 
-## Quickstart
+## Web studio
 
 ```bash
 git clone https://github.com/Sutera-Diffusus/stylegrid
 cd stylegrid
 pip install -r requirements.txt
+python app/server.py        # open http://127.0.0.1:8765/
+```
 
+Drag a photo **anywhere into the window**, pick a style card, hit **生成整套作品** — the nine-grid,
+hybrid and V / S / H posters arrive together, with a one-click zip download. The step-by-step
+visual guide lives at [docs/网页版教程.md](docs/网页版教程.md) (Chinese).
+
+| Light · guided home | Dark · result gallery |
+|---|---|
+| <img src="samples/preview_ui_light.jpg"> | <img src="samples/preview_ui_dark.jpg"> |
+
+Prefer the terminal? Everything is scriptable — see [CLI usage](#cli-usage).
+
+---
+
+## CLI usage
+
+```bash
 python workflow.py --src your_photo.jpg --out out/auto
 ```
 
@@ -150,26 +167,9 @@ Everything runs locally. No network calls, no uploads, no telemetry — your pho
 └── samples/         README previews
 ```
 
-## Local web studio
+## Promo film
 
-Prefer a GUI? The repo ships a local single-page studio (drag a photo in → pick a style card → generate):
-
-| Light · guided home | Dark · result gallery |
-|---|---|
-| <img src="samples/preview_ui_light.jpg"> | <img src="samples/preview_ui_dark.jpg"> |
-
-**Step-by-step guide (Chinese): [网页版教程 →](docs/网页版教程.md)**
-
-```bash
-python app/server.py              # http://127.0.0.1:8765/
-python app/server.py --port 8791  # pick another port if busy
-```
-
-Style presets are thumbnail cards; "自定义" opens the full 51-style multi-select pool.
-Recent works are read from `out/web/` — drag to scroll, click to revisit, download the whole set.
-Same engine as the CLI: `POST /api/generate` runs `workflow.run(...)` and writes to `out/web/`.
-
-**Promo film**: a 15-second self-contained product short rendered frame by frame with PIL:
+A 15-second self-contained product short rendered frame by frame with PIL:
 
 ```bash
 python promo/make_promo.py        # promo/out/stylegrid_promo.mp4 + contact sheet + JSON
