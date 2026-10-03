@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#F5F5F7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+  <title>stylegrid · 风格网格</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar" id="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="brand-name">stylegrid</span>
+    </div>
+    <a class="github-link" href="https://github.com/Sutera-Diffusus/stylegrid" target="_blank" rel="noopener" aria-label="GitHub 仓库" title="GitHub · Sutera-Diffusus/stylegrid">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+    </a>
+  </header>
+
+  <main class="stage">
+    <section class="hero">
+      <div class="hero-wall" id="hero-wall" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div class="hero-badge"><span class="badge-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>stylegrid</div>
+        <h1>一张照片进，<br />一套作品出<span class="dot-accent">。</span></h1>
+
+      </div>
+    </section>
+
+    <section class="composer" id="composer">
+      <label class="dropzone-hero" id="dropzone" for="file-input" tabindex="0">
+        <input id="file-input" type="file" accept="image/png,image/jpeg,image/webp" hidden />
+        <span class="dz-orb" aria-hidden="true"><span class="dz-grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></span>
+        <strong>把照片拖到这里</strong>
+        <span class="dz-sub">或点击选择 · PNG / JPG / WEBP，不超过 20 MB</span>
+        <i class="vf-corner tl" aria-hidden="true"></i><i class="vf-corner tr" aria-hidden="true"></i><i class="vf-corner bl" aria-hidden="true"></i><i class="vf-corner br" aria-hidden="true"></i>
+      </label>
+      <button class="sample-link" data-use-sample>没有趁手的照片？用示例素材试试<span class="chev-link">›</span></button>
+
+      <div class="ready" id="ready" hidden>
+        <figure class="hero-photo">
+          <img id="source-image" src="../samples/hero.jpg" alt="当前素材预览" />
+          <figcaption class="photo-meta">
+            <span id="source-name">hero.jpg</span>
+            <span class="meta-dot"></span>
+            <span id="source-size">本地样片</span>
+            <button class="text-button" id="replace-source">更换照片</button>
+          </figcaption>
+        </figure>
+
+        <div class="preset-row" id="preset-chips">
+          <button class="style-card selected" data-preset="深海蓝调">
+            <span class="style-thumb"><img src="../samples/preview_moon_grid.jpg" alt="" draggable="false" /></span>
+            <span class="style-name">深海蓝调</span>
+            <i class="style-check"></i>
+          </button>
+          <button class="style-card" data-preset="颗粒纪实">
+            <span class="style-thumb"><img src="../samples/preview_bike_mix.jpg" alt="" draggable="false" /></span>
+            <span class="style-name">颗粒纪实</span>
+            <i class="style-check"></i>
+          </button>
+          <button class="style-card" data-preset="银盐夜色">
+            <span class="style-thumb"><img src="../samples/preview_moon_poster_s.jpg" alt="" draggable="false" /></span>
+            <span class="style-name">银盐夜色</span>
+            <i class="style-check"></i>
+          </button>
+          <button class="style-card" data-preset="炽热信号">
+            <span class="style-thumb"><img src="../samples/preview_bike_poster_h.jpg" alt="" draggable="false" /></span>
+            <span class="style-name">炽热信号</span>
+            <i class="style-check"></i>
+          </button>
+          <button class="style-card style-custom" data-preset="自定义">
+            <span class="style-thumb custom-thumb"><span></span></span>
+            <span class="style-name">自定义</span>
+            <i class="style-check"></i>
+          </button>
+        </div>
+
+        <details class="options" id="options">
+          <summary>更多选项<span class="chev" aria-hidden="true">›</span></summary>
+          <div class="options-body">
+            <div class="opt-field opt-wide" id="custom-styles-field" hidden>
+              <div class="opt-label"><span>自定义风格池</span><span class="opt-helper" id="custom-styles-count">未选择</span></div>
+              <div class="style-pool" id="style-pool"></div>
+            </div>
+            <div class="opt-field">
+              <div class="opt-label"><span>色彩混合</span><span class="opt-helper">混血配方</span></div>
+              <div class="select-wrap">
+                <select id="mix-select">
+                  <option value="潮汐冷光">潮汐冷光</option>
+                  <option value="月蚀单色">月蚀单色</option>
+                  <option value="霓虹余温">霓虹余温</option>
+                  <option value="沙丘低饱和">沙丘低饱和</option>
+                </select>
+                <svg class="select-caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+            <div class="opt-field">
+              <div class="opt-label"><span>视觉密度</span><span class="opt-helper" id="density-value">均衡</span></div>
+              <input class="range-input" id="density-range" type="range" min="1" max="3" value="2" aria-label="视觉密度" />
+              <div class="range-labels"><span>克制</span><span>丰沛</span></div>
+            </div>
+            <div class="opt-field opt-wide">
+              <div class="opt-label"><span>输出格式</span><span class="opt-helper">同时生成三套比例</span></div>
+              <div class="format-row" id="format-controls">
+                <button class="format-card selected" data-format="V"><span class="format-icon portrait"></span><span><b>V</b><small>竖版 · 3:4</small></span><i class="format-check"></i></button>
+                <button class="format-card selected" data-format="S"><span class="format-icon square"></span><span><b>S</b><small>方版 · 1:1</small></span><i class="format-check"></i></button>
+                <button class="format-card selected" data-format="H"><span class="format-icon landscape"></span><span><b>H</b><small>横版 · 4:3</small></span><i class="format-check"></i></button>
+              </div>
+            </div>
+            <div class="opt-field opt-wide">
+              <div class="opt-label"><span>题签</span><span class="opt-helper">可选 · 默认纯图片海报</span></div>
+              <input class="text-input title-input" id="title-input" value="月亮落在海面以前" maxlength="40" placeholder="主标题" />
+              <input class="text-input" id="subtitle-input" value="An atlas of quiet tides" maxlength="60" placeholder="副标题" />
+              <div class="opt-foot"><span id="char-count">8 / 40</span></div>
+            </div>
+          </div>
+        </details>
+
+        <button class="cta" id="generate-button"><span class="button-label">生成整套作品</span></button>
+        <p class="cta-note">本地运行 · 不产生任何网络请求</p>
+      </div>
+    </section>
+
+    <section class="results" id="results" hidden>
+      <div class="results-stage">
+        <div class="progress-wrap" id="progress-stage" hidden>
+          <div class="progress-grid" id="progress-grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="progress-number" id="progress-number">0%</div>
+          <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+          <div class="progress-title" id="progress-title">正在读取构图关系…</div>
+          <div class="progress-sub" id="progress-sub">本地引擎 · 不产生网络请求</div>
+        </div>
+
+        <div class="gallery-wrap" id="gallery-stage" hidden>
+          <div class="results-bar">
+            <div class="segmented" role="tablist">
+              <span class="seg-thumb" aria-hidden="true"></span>
+              <button class="gallery-tab active" data-gallery="grid" role="tab">九宫格</button>
+              <button class="gallery-tab" data-gallery="hybrid" role="tab">混合构图</button>
+              <button class="gallery-tab" data-gallery="posters" role="tab">海报变体</button>
+            </div>
+            <div class="results-actions">
+              <span class="score-pill" id="score-pill" hidden>痕迹分 <b id="score-big">—</b></span>
+              <span class="output-meta" id="output-count"></span>
+              <button class="icon-btn stage-action" title="打开原图" aria-label="打开第一张大图">
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M11 4h5v5M16 4l-6.5 6.5M9 16H4v-5M4 16l6.5-6.5" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button class="small-button" id="download-all">下载作品包</button>
+            </div>
+          </div>
+          <div class="gallery-content" id="gallery-content"></div>
+          <div class="results-foot">
+            <button class="text-button" id="clear-output">清空结果</button>
+            <button class="text-button" id="new-creation">再做一张<span class="chev-link">›</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="recents" id="recents" hidden>
+      <div class="recents-head">
+        <h2>最近作品</h2>
+        <button class="recents-toggle" id="recents-toggle" aria-label="收起最近作品">
+          <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <div class="recent-row" id="recent-row"></div>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <div class="lb-glow" id="lb-glow" aria-hidden="true"></div>
+    <img id="lightbox-img" alt="放大查看" />
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><span id="toast-text">已更新</span></div>
+  <script src="app.js"></script>
+</body>
+</html>

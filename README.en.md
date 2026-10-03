@@ -142,10 +142,31 @@ Everything runs locally. No network calls, no uploads, no telemetry — your pho
 ├── workflow.py      one-stop entry: analyse → pick styles → grids/hybrids/posters → QA report
 ├── gridkit.py       renderer core: 51 styles, 5 palettes, adaptive segmentation, smart suggest
 ├── mixposter.py     hybrid engine (blend modes × scopes) + layout system
+├── app/             local web studio (server.py + single-page UI, zero deps)
+├── promo/           promo-film generator (make_promo.py, PIL frame renderer)
 ├── selftest.py      style-library regression
 ├── e2e_test.py      closed-loop workflow test
 ├── docs/            full style catalogue + trace-score tables (Chinese)
 └── samples/         README previews
+```
+
+## Local web studio
+
+Prefer a GUI? The repo ships a local single-page studio (drag a photo in → pick a style card → generate):
+
+```bash
+python app/server.py              # http://127.0.0.1:8765/
+python app/server.py --port 8791  # pick another port if busy
+```
+
+Style presets are thumbnail cards; "自定义" opens the full 51-style multi-select pool.
+Recent works are read from `out/web/` — drag to scroll, click to revisit, download the whole set.
+Same engine as the CLI: `POST /api/generate` runs `workflow.run(...)` and writes to `out/web/`.
+
+**Promo film**: a 15-second self-contained product short rendered frame by frame with PIL:
+
+```bash
+python promo/make_promo.py        # promo/out/stylegrid_promo.mp4 + contact sheet + JSON
 ```
 
 ## Development conventions

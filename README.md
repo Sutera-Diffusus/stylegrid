@@ -232,10 +232,34 @@ python mixposter.py --src p.jpg --out out/ --poster V --style riso_pixel --title
 ├── workflow.py        一站式入口：分析 → 选风格 → 九宫格/混血/海报 → 质检报告
 ├── gridkit.py         渲染主库：51 风格 + 5 配色 + 自适应主体分割 + 智能推荐
 ├── mixposter.py       混血引擎（混合模式 × 作用域）+ 版式系统
+├── app/               本地 Web 工作室（server.py + 单页前端,零依赖)
+├── promo/             宣传短片生成器（make_promo.py,PIL 逐帧渲染)
 ├── selftest.py        风格库回归测试
 ├── e2e_test.py        工作流闭环测试（自包含）
 ├── docs/风格清单.md    全风格说明 + 痕迹分总表
 └── samples/           README 用示例成品
+```
+
+---
+
+## 本地 Web 工作室
+
+不喜欢命令行？仓库自带一个本地 Web 界面（苹果式单页：拖图 → 选风格卡 → 生成）:
+
+```bash
+python app/server.py              # 默认 http://127.0.0.1:8765/
+python app/server.py --port 8791  # 端口被占用时换一个
+```
+
+- **风格预设是缩略图卡**,「自定义」展开 51 种风格多选池，直接改生成内容
+- 「更多选项」里调色彩混合 / 视觉密度 / V·S·H 画幅 / 题签
+- 最近作品自动读取 `out/web/` 历史产物，可拖拽横滑、点击回看、整包下载
+- 与 CLI 同一引擎：`POST /api/generate` 走的就是 `workflow.run(...)`，产物落盘 `out/web/`
+
+**宣传短片**:15 秒产品短片（PIL 逐帧渲染，无外部素材）:
+
+```bash
+python promo/make_promo.py        # 输出 promo/out/stylegrid_promo.mp4 + 分镜图 + JSON
 ```
 
 ---
